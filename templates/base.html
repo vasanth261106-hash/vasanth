@@ -1,0 +1,6 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{{ title or 'PocketSmart AI' }}</title><link rel="stylesheet" href="/static/styles.css"></head><body>
+<header class="topbar"><div class="nav-wrap"><a class="brand" href="/">PocketSmart</a><nav>
+<a href="/dashboard">⌂ Dashboard</a><a href="/planner/home">🏠 Home Budget</a><a href="/planner/party">🎉 Party Planner</a><a href="/planner/jewelry">💎 Jewelry Planner</a><a href="/history">↻ History</a>{% if user %}<a href="/logout">⇥ Logout</a>{% else %}<a href="/login">Sign In</a>{% endif %}</nav></div></header>
+{% block content %}{% endblock %}
+<footer class="footer"><div><strong>PocketSmart</strong><p>AI-powered budget planning for everyday needs.</p></div><div><strong>Company</strong><a href="/testimonials">Testimonials</a><a href="/">About</a></div><div><strong>Product</strong><a href="/planner/home">Home Planner</a><a href="/planner/party">Party Planner</a><a href="/planner/jewelry">Jewelry Planner</a></div><div><strong>Resources</strong><a href="/history">History</a><a href="/docs">API Docs</a></div><small>© 2026 PocketSmart AI. All rights reserved.</small></footer>
+<script src="/static/app.js"></script></body></html>

@@ -1,0 +1,9 @@
+async function sendPlanner(url,payload,form){
+  const msg=document.getElementById('form-message'); if(msg) msg.textContent='Generating your personalized plan...';
+  try{const res=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); const data=await res.json(); if(!res.ok) throw new Error(data.detail||'Request failed'); window.location.href='/recommendation/'+data.id;}catch(e){if(msg) msg.textContent=e.message;}
+}
+document.addEventListener('DOMContentLoaded',()=>{
+ const home=document.getElementById('home-form'); if(home) home.addEventListener('submit',e=>{e.preventDefault();sendPlanner('/generate-home',{budget:Number(document.getElementById('home-budget').value),lights:Number(document.getElementById('lights').value),fans:Number(document.getElementById('fans').value),furniture:Number(document.getElementById('furniture').value),dining_tables:Number(document.getElementById('dining').value),rooms:[...document.querySelectorAll('input[name="rooms"]:checked')].map(x=>x.value),notes:document.getElementById('home-notes').value},home)});
+ const party=document.getElementById('party-form'); if(party) party.addEventListener('submit',e=>{e.preventDefault();sendPlanner('/generate-party',{budget:Number(document.getElementById('party-budget').value),guests:Number(document.getElementById('guests').value),event_type:document.getElementById('event-type').value,venue:document.getElementById('venue').value,needs:[...document.querySelectorAll('input[name="needs"]:checked')].map(x=>x.value),notes:document.getElementById('party-notes').value},party)});
+ const confirm=document.getElementById('confirm'); if(confirm) confirm.form?.addEventListener('submit',e=>{if(confirm.value!==confirm.form.querySelector('input[name=password]').value){e.preventDefault();alert('Passwords do not match.')}});
+});
